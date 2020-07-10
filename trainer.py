@@ -140,11 +140,13 @@ class MUNIT_Trainer(nn.Module):
                               hyperparameters['enve_w'] * self.loss_gen_enve_b2a + \
                               hyperparameters['vol_w'] * self.loss_gen_vol_a + \
                               hyperparameters['vol_w'] * self.loss_gen_vol_b
+
+        if hyperparameters['gan_w_db']:
+            self.loss_db_adv_a = self.dis_a.calc_db_loss(x_ba, x_a_recon)
+            self.loss_db_adv_b = self.dis_b.calc_db_loss(x_ab, x_b_recon)
+            self.loss_gen_total += hyperparameters['gan_w_db'] * (self.loss_db_adv_a + self.loss_db_adv_b)
+
         self.loss_gen_total.backward()        
-        if hyperparameters['clip_grad'] == 'value':
-            torch.nn.utils.clip_grad_value_(list(self.gen_a.parameters()) + list(self.gen_b.parameters()), 1)
-        elif hyperparameters['clip_grad'] == 'norm':
-            torch.nn.utils.clip_grad_norm_(list(self.gen_a.parameters()) + list(self.gen_b.parameters()), 0.5)
         self.gen_opt.step()
 
     def calc_cepstrum_loss(self, x_fake):

@@ -28,7 +28,7 @@ ceps_w: 1                     # weight of cepstrum in intrinsic consistency loss
 flux_w: 1                     # weight of spectral flux in intrinsic consistency loss
 enve_w: 1                     # weight of spectral envelope in intrinsic consistency loss
 vol_w: 1                      # weight of volume loss
-clip_grad: 'value'            # gradient clipping on encoder and decoder [value/norm/None]
+gan_w_db: 0.5                 # weight of domain balance loss
 
 # model options
 gen:

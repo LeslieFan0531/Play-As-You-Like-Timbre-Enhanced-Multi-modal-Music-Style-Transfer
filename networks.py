@@ -29,7 +29,7 @@ class MsImageDis(nn.Module):
         self.num_scales = params['num_scales']
         self.pad_type = params['pad_type']
         self.input_dim = input_dim
-        self.downsample = nn.AvgPool2d(3, stride=2, padding=[1, 1], count_include_pad=False)
+        self.downsample = nn.AvgPool2d(3, stride=(2,1), padding=[1, 1], count_include_pad=False)
         self.cnns = nn.ModuleList()
         for _ in range(self.num_scales):
             self.cnns.append(self._make_net())
@@ -126,6 +126,18 @@ class MsImageDis(nn.Module):
                          torch.mean((out0 - torch.mean(out1) - 1) ** 2)) / 2
             else:
                 assert 0, "Unsupported GAN type: {}".format(self.gan_type)
+        return loss
+
+    def calc_db_loss(self, input_fake, input_rec):
+        outs0 = self.forward(input_fake)
+        outs1 = self.forward(input_rec)
+        loss = 0
+        for it, (out0, out1) in enumerate(zip(outs0, outs1)):
+            if self.gan_type == 'lsgan':
+                loss += torch.mean((out0 - out1)**2) # LSGAN
+            elif self.gan_type == 'ralsgan':
+                loss += (torch.mean((out1 - torch.mean(out0) ) ** 2) + \
+                        torch.mean((out0 - torch.mean(out1)) ** 2)) / 2
         return loss
 
 ##################################################################################
