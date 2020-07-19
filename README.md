@@ -58,11 +58,7 @@ The checkpoint of the classifier is provided under the cnet folder and is set to
 
 The left two columns are the input (original) and output (transferred) features of a piano to guitar transfer while the right two columns are features of a guitar to piano transfer. From top to bottom the features are: mel-spectrogram, MFCC, spectral difference, and spectral envelope.
 
-Audio samples for a bilateral transfer of [piano to guitar](https://www.dropbox.com/s/ys9tipulzlpib5j/MUNIT-ALL-P2G-06.mp3?dl=0) and [guitar to piano](https://www.dropbox.com/s/rp395l9xritfvcp/MUNIT-ALL-G2P-04.mp3?dl=0).
-
-
-
-Here's the [link](https://www.dropbox.com/sh/un0ws0aradjbxeq/AADR670aPJUCtemHJ-qt4aAja?dl=0) to all audio samples.
+Here's the [link](https://drive.google.com/drive/folders/1IFU1KQY0Ll850U9cnDeMZtxjGFiu3wSu?usp=sharing) to all audio samples.
 
 ### Citation
 ```
