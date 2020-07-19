@@ -50,7 +50,7 @@ For testing
 ```
 python ctest.py --dataroot Path_to_the_data (--cnet Path_to_the_checkpoint)
 ```
-The struture of the testing dataroot is the same as training dataroot.
+The struture of the testing dataroot is the same as the training dataroot.
 The checkpoint of the classifier is provided under the cnet folder and is set to be the default path of the checkpoint.
 
 ### Results
