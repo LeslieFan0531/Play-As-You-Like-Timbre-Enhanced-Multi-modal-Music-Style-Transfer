@@ -38,6 +38,21 @@ You can run `test.py` after finishing training process. The following line will 
 python test.py --config configs/example.yaml --input dataset/pia2vio_example/ --checkpoint outputs/example/checkpoints/gen.pt --a2b 1
 ```
 
+#### Objective Evaluation
+To train the classifier
+```
+python classifier.py --dataroot Path_to_the_data
+```
+The dataroot should contain subfolders named guitar, piano and strings.
+The music data is placed into the correspoinding subfolder according to their instruments.
+
+For testing
+```
+python ctest.py --dataroot Path_to_the_data (--cnet Path_to_the_checkpoint)
+```
+The struture of the testing dataroot is the same as training dataroot.
+The checkpoint of the classifier is provided under the cnet folder and is set to be the default path of the checkpoint.
+
 ### Results
 ![](https://i.imgur.com/HwBPOkF.png)
 
